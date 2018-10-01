@@ -34,7 +34,16 @@ double Program::compute() {
     return instructions[pointer].compute();
 }
 
+/**
+    Increment the pointer
+*/
+void Program::increment() {
+    pointer++;
+}
 
+/**
+    Reset the pointer
+*/
 
 void Program::reset() {
     pointer = 0;

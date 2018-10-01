@@ -32,6 +32,7 @@ private:
 public:
     Program(std::string path); // Here we generate all the private fields
     double compute(); // Compute current Instruction and increment the pointer
+    void increment(); // Increment the pointer
     void reset(); // Put pointer to 0
     bool end(); // Return 1 if all the instruction have been executed
 };
