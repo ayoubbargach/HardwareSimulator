@@ -15,6 +15,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
+#include <sstream>
 
 class FileManipulator {
 private:
