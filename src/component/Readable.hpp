@@ -1,5 +1,5 @@
-#ifndef H_READABLE
-#define H_READABLE
+#ifndef READABLE_HPP
+#define READABLE_HPP
 
 #include "platform/type.hpp"
 

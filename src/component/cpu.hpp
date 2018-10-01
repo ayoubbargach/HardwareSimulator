@@ -1,19 +1,34 @@
+/**
+    CS-11 Asn 2
+    cpu.cpp
+    Purpose: CPU specs.
 
-#ifndef MYHEADER_HPP
-#define MYHEADER_HPP
+    @author Ayoub Bargach
+    @version 1.0
+*/
+
+#ifndef CPU_HPP
+#define CPU_HPP
 
 #include <string>
-#include "./Component.hpp"
-#include "./Readable.hpp"
+#include <list>
+#include "Component.hpp"
+#include "Readable.hpp"
+#include "io/config.hpp"
+
 
 class Cpu : public Component, public Readable {
 private:
-  std::string label;
+  Label l;
+  int coreFlag;
   int cores;
   int frequency;
+  std::list<double> cpuRegister;
 public:
-  std::string program_path;
+  std::string programPath;
+  Cpu(Config c);
   void simulate();
+  DataValue read();
 };
 
 #endif

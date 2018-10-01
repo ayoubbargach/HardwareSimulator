@@ -1,5 +1,5 @@
-#ifndef H_COMPONENT
-#define H_COMPONENT
+#ifndef COMPONENT_HPP
+#define COMPONENT_HPP
 
 
 class Component {
