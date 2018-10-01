@@ -12,8 +12,9 @@
 #define PROGRAM_HPP
 
 #include <string>
-#include <list>
 #include <vector>
+#include <sstream>
+#include "format.hpp"
 
 /**
     Decodes a program.
@@ -23,14 +24,13 @@
 
 class Program {
 private:
-    std::string input;
+    FileManipulator myFile;
     int maxPointer;
     int pointer;
-    std::list<Instruction> instructions;
+    std::vector<Instruction> instructions;
 
 public:
-    Program(); // We also declare a default contructor that return a simple program with NOP instruction (Useful for test simulation purposes)
-    Program(std::string input); // Here we generate all the private fields
+    Program(std::string path); // Here we generate all the private fields
     double compute(); // Compute current Instruction and increment the pointer
     void reset(); // Put pointer to 0
     bool end(); // Return 1 if all the instruction have been executed
@@ -47,10 +47,9 @@ private:
     std::string input;
     op_t opcode;
     std::vector<double> operands;
-    void * op; // A pointer on a function to call when needed to simulate the operation
+    double (*op) (double, double); // A pointer on a function to call when needed to simulate the operation
 
 public:
-    Instruction(); // We also declare a default contructor. When we call this object without any param, it means that we skip the current Instruction (or NOP in assembly)
     Instruction(std::string input); // Here we generate all the private fields
     double compute(); // Compute the operation
 };
@@ -64,20 +63,11 @@ enum op_t { NOP, ADD, SUB, MUL, DIV};
     Basic functions that implement this operations
 */
 
-double opADD (double i, double j) {
-    return i+j;
-}
+double opADD (double i, double j);
+double opSUB (double i, double j);
+double opMUL (double i, double j);
+double opDIV (double i, double j);
+double opNOP (double i, double j);
 
-double opSUB (double i, double j) {
-    return i-j;
-}
-
-double opMUL (double i, double j) {
-    return i*j;
-}
-
-double opDIV (double i, double j) {
-    return i/j;
-}
 
 #endif
