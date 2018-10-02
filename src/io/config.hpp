@@ -20,6 +20,7 @@ private:
     FileManipulator myFile;
 public:
     std::map<std::string, std::string> entries;
+    Config();
     Config(std::string path);
 };
 
