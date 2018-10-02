@@ -19,6 +19,7 @@ class DataValue {
 public:
     double value;
     bool valid;
+    DataValue(double value, bool valid);
 };
 
 // Label management

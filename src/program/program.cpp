@@ -12,8 +12,8 @@
 
 // --- PROGRAM ---
 
-Program::Program(std::string path)
-    : myFile(path), pointer(0), maxPointer(0) {
+Program::Program(std::string path, bool verbose)
+    : myFile(path), pointer(0), maxPointer(0), verbose(verbose) {
 
     // All the work is done by the contructor, we generate here the list of operations
     
@@ -31,6 +31,10 @@ Program::Program(std::string path)
     Compute the current instruction
 */
 double Program::compute() {
+    if (verbose) {
+        // We print only the instruction, the result will be manipulated at the return of the function (Not clean but more optimized)
+        std::cout << instructions[pointer].input << std::endl;
+    }
     return instructions[pointer].compute();
 }
 

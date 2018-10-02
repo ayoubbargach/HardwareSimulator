@@ -9,6 +9,11 @@
 
 #include "type.hpp"
 
+DataValue::DataValue(double value, bool valid)
+    : value(value), valid(valid) {
+
+}
+
 Label::Label(std::string value)
     : value(value) {
 

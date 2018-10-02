@@ -25,18 +25,18 @@ Config::Config(std::string path)
         std::string key;
         std::string value;
 
-        while (getline( iss, element, ' ')) {
+        while (getline( iss, element, ':')) {
 
             //If the element if empty, we skip it TODO / Implement expections
             if ( !element.empty()) {
                 switch (flag) {
                     case 0:
-                        // We delete the last char ':'
-                        element.pop_back();
                         key = element;
                         flag++;
                         break;
                     case 1:
+                        // We delete the front char ' '
+                        element.erase(0, 1); // Not secure, it crashes if there is less than one char
                         value = element;
                         flag++;
                         break;
