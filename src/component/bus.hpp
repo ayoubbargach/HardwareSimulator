@@ -22,11 +22,12 @@ private:
   Label l;
   int counter;
   int width;
-  std::string source;
+  Readable* source;
   std::list<DataValue> pending; //FIFO structure
   std::list<DataValue> ready;
 public:
-  Bus(Config c);
+  Bus(Config c, bool verbose);
+  void bind(Readable* cmpt); // Pointer is mandatory here, abstract class cannot be bind by Value and reference will be initialized and cannot be changed
   void simulate();
   DataValue read();
 };

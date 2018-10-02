@@ -4,7 +4,7 @@
 #include "platform/type.hpp"
 
 class Readable {
-protected:
+public:
   virtual DataValue read() = 0;
 };
 

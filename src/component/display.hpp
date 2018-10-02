@@ -13,6 +13,7 @@
 #include <string>
 #include <list>
 #include "Component.hpp"
+#include "Readable.hpp"
 #include "io/config.hpp"
 #include "platform/type.hpp"
 
@@ -21,7 +22,8 @@ class Display : public Component {
 private:
   Label l;
   int refresh;
-  std::string source;
+  int currentRefresh;
+  Readable* source;
 public:
   Display(Config c);
   void simulate();

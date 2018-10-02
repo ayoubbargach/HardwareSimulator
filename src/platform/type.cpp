@@ -9,6 +9,11 @@
 
 #include "type.hpp"
 
+DataValue::DataValue()
+    : value(0), valid(0) {
+
+}
+
 DataValue::DataValue(double value, bool valid)
     : value(value), valid(valid) {
 

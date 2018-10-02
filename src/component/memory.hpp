@@ -12,6 +12,7 @@
 
 #include <string>
 #include <list>
+#include <iostream>
 #include "Component.hpp"
 #include "Readable.hpp"
 #include "io/config.hpp"
@@ -19,13 +20,19 @@
 
 class Memory : public Component, public Readable {
 private:
+  bool verbose;
   Label l;
   int size;
   int access;
-  std::string source;
-  std::list<DataValue> buffer; // FIFO structure limited to 32 cases
+  int currentAccess;
+  Readable* source;
+  std::list<DataValue> circularBuffer; // a circular buffer is like FIFO structure limited to N cases, this buffer can only be manipulated by put, get and del
 public:
-  Memory(Config c);
+  Memory(Config c, bool verbose);
+  void bind(Readable* cmpt); // Pointer is mandatory here, abstract class cannot be bind by Value and reference will be initialized and cannot be changed
+  int getUnread();
+  int getFree();
+
   void simulate();
   DataValue read();
 };

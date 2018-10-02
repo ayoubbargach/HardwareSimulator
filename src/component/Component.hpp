@@ -3,7 +3,7 @@
 
 
 class Component {
-protected:
+public:
   int priority;
   virtual void simulate() = 0;
 };
