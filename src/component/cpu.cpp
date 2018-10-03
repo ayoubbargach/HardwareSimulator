@@ -13,7 +13,7 @@
 
 Cpu::Cpu(Config & c, bool verbose) 
     : Component(CPU), l(c.entries["LABEL"]), coreFlag(1), cores(std::stoi(c.entries["CORES"])), frequency(std::stoi(c.entries["FREQUENCY"])),
-     programPath(c.entries["PROGRAM"]), p(c.entries["PROGRAM"], verbose), verbose(verbose) {
+     programPath(c.entries["PROGRAM"]), p(c.entries["PROGRAM"], verbose), verbose(verbose), cpuRegister(new std::list<DataValue>()) {
     
     if(verbose) {
         // Print information about the component
@@ -38,7 +38,8 @@ void Cpu::simulate() {
         }
 
         // Save the result in the FIFO (A DataValue object's list)
-        cpuRegister.push_front(DataValue(result, 1)); // We put it at valid 
+        cpuRegister->emplace_front(result, 1); // We put it at valid
+
 
         p.increment();
         currentStep--;
@@ -50,14 +51,18 @@ void Cpu::simulate() {
             p.reset();
         }
     }
+
+    std::cout << "HERE AM I - " << &(this->cpuRegister) << std::endl;
 }
 
 DataValue Cpu::read() {
     // We check if the list is empty
 
-    if (!cpuRegister.empty()) {
-        DataValue recover = cpuRegister.back(); // We take the last value (FIFO) and then we pop it
-        cpuRegister.pop_back();
+    std::cout << "HERE AM I > " << &(this->cpuRegister) << std::endl;
+
+    if (!cpuRegister->empty()) {
+        DataValue recover = cpuRegister->back(); // We take the last value (FIFO) and then we pop it
+        cpuRegister->pop_back();
         return recover;
     }
 

@@ -26,7 +26,7 @@ private:
   int coreFlag;
   int cores;
   int frequency;
-  std::list<DataValue> cpuRegister; // FIFO register with unlimited capacity
+  std::list<DataValue> * cpuRegister; // FIFO register with unlimited capacity
 
 public:
   std::string programPath;

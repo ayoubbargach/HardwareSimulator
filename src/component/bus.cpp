@@ -15,6 +15,7 @@ Bus::Bus(Config & c, bool verbose)
     if (verbose) {
         std::cout << "--- BUS Loading ---" << std::endl;
         std::cout << "Label : " << c.entries["LABEL"] << std::endl;
+        std::cout << "Source : " << c.entries["SOURCE"] << std::endl;
         std::cout << "Width : " << std::stoi(c.entries["WIDTH"]) << std::endl;
         std::cout << "--- end ---" << std::endl;
     }
@@ -35,7 +36,7 @@ void Bus::simulate() {
 
     // We read as much as the width
     while (currentWidth != 0) {
-        pending.push_front((*source).read());
+        pending.push_front(source->read());
 
         if (pending.front().valid == 0) {
             currentWidth = 0; // The return value is valid = 0 It means that the source was not able to send us a value (there is nothing else to read)

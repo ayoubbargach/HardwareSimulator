@@ -17,6 +17,7 @@ Memory::Memory(Config & c, bool verbose)
         std::cout << "Label : " << c.entries["LABEL"] << std::endl;
         std::cout << "Size : " << std::stoi(c.entries["SIZE"]) << std::endl;
         std::cout << "Access : " << std::stoi(c.entries["ACCESS"]) << std::endl;
+        std::cout << "Source : " << c.entries["SOURCE"] << std::endl;
         std::cout << "--- end ---" << std::endl;
     }
 }

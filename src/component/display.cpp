@@ -11,6 +11,8 @@
 
 Display::Display(Config & c)
     : Component(DISPLAY), sourceLabel(c.entries["SOURCE"]), l(c.entries["LABEL"]), currentRefresh(0), refresh(std::stoi(c.entries["REFRESH"])) {
+    
+    std::cout << "Source : " << c.entries["SOURCE"] << std::endl;
 
 }
 

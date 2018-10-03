@@ -19,6 +19,7 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
     std::string labelComponent;
     
     while ((line = myFile.getLine()) != "") {
+
         c = new Config(line);
 
         typeComponent = c->entries["TYPE"];
@@ -38,7 +39,7 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
             readables.insert(std::pair<std::string,Readable *>(labelComponent, new Memory( *c, verbose)));
         }
         else if (typeComponent == "DISPLAY") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Display( *c )));
+            components.insert(std::pair<std::string,Component *>("Display", new Display( *c )));
         }
         else {
             std::cout << "A component have not been recognized, this issue may occur on failures. Please review your config platform file" << std::endl;
@@ -83,8 +84,10 @@ void Platform::bind() {
                 d->source = readables[source];
                 break;
             default:
+                source = "none";
                 break;
         }
+        std::cout << "Aim of binding : " << source << std::endl;
     }
 
     std::cout << "--- BINDING operation : OK ---" << std::endl;
