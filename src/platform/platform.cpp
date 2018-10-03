@@ -60,7 +60,7 @@ void Platform::bind() {
     Display *d;
 
     for (auto & mapPair : components ) {
-        std::cout << "Anlysis of label : " << mapPair.first << std::endl;
+        std::cout << "Analysis of label : " << mapPair.first << std::endl;
 
         type = mapPair.second->type;
 
@@ -96,7 +96,7 @@ void Platform::simulate() {
     std::cout << "--- START simulation ---" << std::endl;
     int i;
 
-    for(i=0; i<steps, i++;) {
+    for(i=0; i<steps; i++) {
         std::cout << "Step " << i << " :" <<std::endl;
         for (auto & mapPair : components ) {
             std::cout << "/!\\ Simulation of component : " << mapPair.first << " /!\\ " << std::endl;

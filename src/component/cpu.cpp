@@ -30,7 +30,7 @@ void Cpu::simulate() {
     double result = 0;
 
     // while we are not at the end of the program and for all the steps
-    while (coreFlag > cores && !p.end() && currentStep >= 0) {
+    while (coreFlag <= cores && !p.end() && currentStep >= 0) {
         result = p.compute();
 
         if (this->verbose) {

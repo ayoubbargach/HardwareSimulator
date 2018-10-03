@@ -25,8 +25,9 @@ public:
 
 // Label management
 class Label {
+    /*
 private:
-    static std::set<std::string> labels;
+    static std::set<std::string> labels; */
 public:
     std::string value;
     Label(std::string value);

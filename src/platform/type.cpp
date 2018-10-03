@@ -21,7 +21,7 @@ DataValue::DataValue(double value, bool valid)
 
 Label::Label(std::string value)
     : value(value) {
-
+    /*
     // Used to change the name of the value if already included
     int i;
     
@@ -33,5 +33,5 @@ Label::Label(std::string value)
     }
 
     // value is unique here :
-    labels.insert( this->value);
+    labels.insert( this->value); */
 }
