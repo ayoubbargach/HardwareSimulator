@@ -52,13 +52,10 @@ void Cpu::simulate() {
         }
     }
 
-    std::cout << "HERE AM I - " << &(this->cpuRegister) << std::endl;
 }
 
 DataValue Cpu::read() {
     // We check if the list is empty
-
-    std::cout << "HERE AM I > " << &(this->cpuRegister) << std::endl;
 
     if (!cpuRegister->empty()) {
         DataValue recover = cpuRegister->back(); // We take the last value (FIFO) and then we pop it

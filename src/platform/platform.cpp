@@ -27,19 +27,23 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
         
         // We add to components and to readables lists. Will be used respectively for simulate() and bind()
         if (typeComponent == "CPU") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Cpu( *c, verbose)));
-            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Cpu( *c, verbose)));
+            Cpu * myCpu = new Cpu( *c, verbose);
+            components.insert(std::pair<std::string,Component *>(labelComponent, myCpu));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, myCpu));
         }
         else if (typeComponent == "BUS") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Bus( *c, verbose)));
-            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Bus( *c, verbose)));
+            Bus * myBus = new Bus( *c, verbose);
+            components.insert(std::pair<std::string,Component *>(labelComponent, myBus));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, myBus));
         }
         else if (typeComponent == "MEMORY") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Memory( *c, verbose)));
-            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Memory( *c, verbose)));
+            Memory * myMemory = new Memory( *c, verbose);
+            components.insert(std::pair<std::string,Component *>(labelComponent, myMemory));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, myMemory));
         }
         else if (typeComponent == "DISPLAY") {
-            components.insert(std::pair<std::string,Component *>("Display", new Display( *c )));
+            Display * myDisplay = new Display( *c);
+            components.insert(std::pair<std::string,Component *>("Display", myDisplay));
         }
         else {
             std::cout << "A component have not been recognized, this issue may occur on failures. Please review your config platform file" << std::endl;
@@ -100,9 +104,13 @@ void Platform::simulate() {
     int i;
 
     for(i=0; i<steps; i++) {
-        std::cout << "Step " << i << " :" <<std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << "/!\\ STEP /!\\ : " << i << " >" <<std::endl;
         for (auto & mapPair : components ) {
-            std::cout << "/!\\ Simulation of component : " << mapPair.first << " /!\\ " << std::endl;
+            std::cout << std::endl;
+            std::cout << "-- Simulation of component : " << mapPair.first << " -- " << std::endl;
             mapPair.second->simulate();
         }
     }

@@ -50,6 +50,10 @@ void Bus::simulate() {
 
 DataValue Bus::read() {
     // We check if the list is empty
+    // Counts the number of time it is read
+    counter ++;
+
+    std::cout << "Bus " << l.value << " have been read " << counter << " times !" << std::endl;
 
     if (!ready.empty()) {
         DataValue recover = ready.back(); // We take the last value (FIFO) and then we pop it
