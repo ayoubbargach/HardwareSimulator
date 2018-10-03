@@ -25,6 +25,7 @@ private:
   int size;
   int access;
   int currentAccess;
+  std::string sourceLabel;
   Readable* source;
   std::list<DataValue> circularBuffer; // a circular buffer is like FIFO structure limited to N cases, this buffer can only be manipulated by put, get and del
 public:

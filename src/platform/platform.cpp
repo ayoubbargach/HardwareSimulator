@@ -25,7 +25,6 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
         labelComponent = c->entries["LABEL"];
         
 
-
         if (typeComponent == "CPU") {
             components.insert(std::pair<std::string,Component *>(labelComponent, new Cpu( Config(line), verbose)));
         }
@@ -43,4 +42,8 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
         }
         
     }
+}
+
+void Platform::bind() {
+    // We analyse the list of configs to add read if a source is needed
 }

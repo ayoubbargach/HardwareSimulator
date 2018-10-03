@@ -10,7 +10,7 @@
 #include "memory.hpp"
 
 Memory::Memory(Config c, bool verbose)
-    : l(c.entries["LABEL"]), currentAccess(0), size(std::stoi(c.entries["SIZE"])), access(std::stoi(c.entries["ACCESS"])), verbose(verbose) { //First access works
+    : Component(MEMORY), sourceLabel(c.entries["SOURCE"]), l(c.entries["LABEL"]), currentAccess(0), size(std::stoi(c.entries["SIZE"])), access(std::stoi(c.entries["ACCESS"])), verbose(verbose) { //First access works
     
     if (verbose) {
         std::cout << "--- MEMORY Loading ---" << std::endl;

@@ -22,6 +22,7 @@ private:
   Label l;
   int counter;
   int width;
+  std::string sourceLabel;
   Readable* source;
   std::list<DataValue> pending; //FIFO structure
   std::list<DataValue> ready;

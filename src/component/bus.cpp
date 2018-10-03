@@ -10,7 +10,7 @@
 #include "bus.hpp"
 
 Bus::Bus(Config c, bool verbose)
-    : l(c.entries["LABEL"]), counter(0), width(std::stoi(c.entries["WIDTH"])) {
+    : Component(BUS), sourceLabel(c.entries["SOURCE"]), l(c.entries["LABEL"]), counter(0), width(std::stoi(c.entries["WIDTH"])) {
     
     if (verbose) {
         std::cout << "--- BUS Loading ---" << std::endl;
