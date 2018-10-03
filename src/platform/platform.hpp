@@ -14,6 +14,7 @@
 #include <map>
 
 #include "component/Component.hpp"
+#include "component/Readable.hpp"
 #include "format.hpp"
 #include "config.hpp"
 
@@ -31,6 +32,7 @@ private:
     bool verbose; // Input by the user
     FileManipulator myFile;
     std::map<std::string, Component *> components; // LABEL -> component
+    std::map<std::string, Readable *> readables; // LABEL -> component
 public:
     Platform(std::string generalConfigFile, int steps, bool verbose);
     void bind(); // Perform the binding of all the components

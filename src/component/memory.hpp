@@ -25,10 +25,10 @@ private:
   int size;
   int access;
   int currentAccess;
-  std::string sourceLabel;
-  Readable* source;
   std::list<DataValue> circularBuffer; // a circular buffer is like FIFO structure limited to N cases, this buffer can only be manipulated by put, get and del
 public:
+  std::string sourceLabel;
+  Readable* source;
   Memory(Config c, bool verbose);
   void bind(Readable* cmpt); // Pointer is mandatory here, abstract class cannot be bind by Value and reference will be initialized and cannot be changed
   int getUnread();

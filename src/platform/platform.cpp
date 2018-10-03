@@ -24,15 +24,18 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
         typeComponent = c->entries["TYPE"];
         labelComponent = c->entries["LABEL"];
         
-
+        // We add to components and to readables lists. Will be used respectively for simulate() and bind()
         if (typeComponent == "CPU") {
             components.insert(std::pair<std::string,Component *>(labelComponent, new Cpu( Config(line), verbose)));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Cpu( Config(line), verbose)));
         }
         else if (typeComponent == "BUS") {
             components.insert(std::pair<std::string,Component *>(labelComponent, new Bus( Config(line), verbose)));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Bus( Config(line), verbose)));
         }
         else if (typeComponent == "MEMORY") {
             components.insert(std::pair<std::string,Component *>(labelComponent, new Memory( Config(line), verbose)));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Memory( Config(line), verbose)));
         }
         else if (typeComponent == "DISPLAY") {
             components.insert(std::pair<std::string,Component *>(labelComponent, new Display( Config(line))));
@@ -42,8 +45,59 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
         }
         
     }
+
+    std::cout << "--- INIT of all components : OK ---" << std::endl;
 }
 
 void Platform::bind() {
     // We analyse the list of configs to add read if a source is needed
+    // We use iterator to explore all the array
+
+    component_t type = NONE;
+    std::string source;
+
+    for (auto & mapPair : components ) {
+        std::cout << "Anlysis of label : " << mapPair.first << std::endl;
+
+        type = mapPair.second->type;
+
+
+        // If any of the types that need to be sourced :
+        switch (type) {
+            case BUS:
+                Bus * b = dynamic_cast<Bus *>(mapPair.second);
+                source = b->sourceLabel;
+                b->source = readables[source];
+                break;
+            case MEMORY:
+                Memory * b = dynamic_cast<Memory *>(mapPair.second);
+                source = b->sourceLabel;
+                b->source = readables[source];
+                break;
+            case DISPLAY:
+                Display * b = dynamic_cast<Display *>(mapPair.second);
+                source = b->sourceLabel;
+                b->source = readables[source];
+                break;
+            default:
+                break;
+        }
+    }
+
+    std::cout << "--- BINDING operation : OK ---" << std::endl;
+}
+
+void Platform::simulate() {
+    // We iterate over all components to simulate them all !
+
+    std::cout << "--- START simulation ---" << std::endl;
+
+    for(i=0; i<steps, i++) {
+        std::cout << "Step " << i << " :" <<std::endl;
+        for (auto & mapPair : components ) {
+            std::cout << "/!\\ Simulation of component : " << mapPair.first << " /!\\ " << std::endl;
+            mapPair.second->simulate();
+        }
+    }
+
 }

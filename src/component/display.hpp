@@ -23,9 +23,9 @@ private:
   Label l;
   int refresh;
   int currentRefresh;
+public:
   std::string sourceLabel;
   Readable* source;
-public:
   Display(Config c);
   void simulate();
 };

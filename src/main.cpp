@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include "platform/platform.hpp"
 
 int main(int argc, char const *argv[]) {
   
@@ -19,6 +20,21 @@ int main(int argc, char const *argv[]) {
     default:
       break;
   }
+
+  std::cout << "--- PLATFORM init ---" << std::endl;
+
+  // Init a platform
+  Platform p("testdata/platform.txt", steps, verbose);
+
+  std::cout << "--- PLATFORM binding ---" << std::endl;
+  // We bind all the components
+  p.bind();
+
+  std::cout << "--- PLATFORM simulation ---" << std::endl;
+  // We do all the simulation
+  p.simulate();
+
+  std::cout << "--- end, bye ! ---" << std::endl;
 
   return 0;
 }
