@@ -15,7 +15,7 @@
 #include <iostream>
 #include "component.hpp"
 #include "readable.hpp"
-#include "io/config.hpp"
+#include "../io/config.hpp"
 
 
 class Memory : public Component, public Readable {
@@ -29,7 +29,7 @@ private:
 public:
   std::string sourceLabel;
   Readable* source;
-  Memory(Config c, bool verbose);
+  Memory(Config & c, bool verbose);
   void bind(Readable* cmpt); // Pointer is mandatory here, abstract class cannot be bind by Value and reference will be initialized and cannot be changed
   int getUnread();
   int getFree();

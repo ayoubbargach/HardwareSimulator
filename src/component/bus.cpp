@@ -9,7 +9,7 @@
 
 #include "bus.hpp"
 
-Bus::Bus(Config c, bool verbose)
+Bus::Bus(Config & c, bool verbose)
     : Component(BUS), sourceLabel(c.entries["SOURCE"]), l(c.entries["LABEL"]), counter(0), width(std::stoi(c.entries["WIDTH"])) {
     
     if (verbose) {

@@ -26,19 +26,19 @@ Platform::Platform(std::string generalConfigFile, int steps, bool verbose)
         
         // We add to components and to readables lists. Will be used respectively for simulate() and bind()
         if (typeComponent == "CPU") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Cpu( Config(line), verbose)));
-            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Cpu( Config(line), verbose)));
+            components.insert(std::pair<std::string,Component *>(labelComponent, new Cpu( *c, verbose)));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Cpu( *c, verbose)));
         }
         else if (typeComponent == "BUS") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Bus( Config(line), verbose)));
-            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Bus( Config(line), verbose)));
+            components.insert(std::pair<std::string,Component *>(labelComponent, new Bus( *c, verbose)));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Bus( *c, verbose)));
         }
         else if (typeComponent == "MEMORY") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Memory( Config(line), verbose)));
-            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Memory( Config(line), verbose)));
+            components.insert(std::pair<std::string,Component *>(labelComponent, new Memory( *c, verbose)));
+            readables.insert(std::pair<std::string,Readable *>(labelComponent, new Memory( *c, verbose)));
         }
         else if (typeComponent == "DISPLAY") {
-            components.insert(std::pair<std::string,Component *>(labelComponent, new Display( Config(line))));
+            components.insert(std::pair<std::string,Component *>(labelComponent, new Display( *c )));
         }
         else {
             std::cout << "A component have not been recognized, this issue may occur on failures. Please review your config platform file" << std::endl;
@@ -55,6 +55,9 @@ void Platform::bind() {
 
     component_t type = NONE;
     std::string source;
+    Bus *b;
+    Memory *m;
+    Display *d;
 
     for (auto & mapPair : components ) {
         std::cout << "Anlysis of label : " << mapPair.first << std::endl;
@@ -65,19 +68,19 @@ void Platform::bind() {
         // If any of the types that need to be sourced :
         switch (type) {
             case BUS:
-                Bus * b = dynamic_cast<Bus *>(mapPair.second);
+                b = dynamic_cast<Bus *>(mapPair.second);
                 source = b->sourceLabel;
                 b->source = readables[source];
                 break;
             case MEMORY:
-                Memory * b = dynamic_cast<Memory *>(mapPair.second);
-                source = b->sourceLabel;
-                b->source = readables[source];
+                m = dynamic_cast<Memory *>(mapPair.second);
+                source = m->sourceLabel;
+                m->source = readables[source];
                 break;
             case DISPLAY:
-                Display * b = dynamic_cast<Display *>(mapPair.second);
-                source = b->sourceLabel;
-                b->source = readables[source];
+                d = dynamic_cast<Display *>(mapPair.second);
+                source = d->sourceLabel;
+                d->source = readables[source];
                 break;
             default:
                 break;

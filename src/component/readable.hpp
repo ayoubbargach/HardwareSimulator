@@ -1,7 +1,7 @@
 #ifndef READABLE_HPP
 #define READABLE_HPP
 
-#include "platform/type.hpp"
+#include "../platform/type.hpp"
 
 class Readable {
 public:

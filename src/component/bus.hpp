@@ -14,7 +14,7 @@
 #include <list>
 #include "component.hpp"
 #include "readable.hpp"
-#include "io/config.hpp"
+#include "../io/config.hpp"
 
 
 class Bus : public Component, public Readable {
@@ -27,7 +27,7 @@ private:
 public:
   std::string sourceLabel;
   Readable* source;
-  Bus(Config c, bool verbose);
+  Bus(Config & c, bool verbose);
   void bind(Readable* cmpt); // Pointer is mandatory here, abstract class cannot be bind by Value and reference will be initialized and cannot be changed
   void simulate();
   DataValue read();

@@ -13,16 +13,16 @@
 
 #include <map>
 
-#include "component/component.hpp"
-#include "component/readable.hpp"
-#include "format.hpp"
-#include "config.hpp"
+#include "../component/component.hpp"
+#include "../component/readable.hpp"
+#include "../io/format.hpp"
+#include "../io/config.hpp"
 
 // Then we include all the components
-#include "component/cpu.hpp"
-#include "component/bus.hpp"
-#include "component/memory.hpp"
-#include "component/display.hpp"
+#include "../component/cpu.hpp"
+#include "../component/bus.hpp"
+#include "../component/memory.hpp"
+#include "../component/display.hpp"
 
 
 

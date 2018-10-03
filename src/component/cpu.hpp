@@ -15,8 +15,8 @@
 #include <list>
 #include "component.hpp"
 #include "readable.hpp"
-#include "io/config.hpp"
-#include "program/program.hpp"
+#include "../io/config.hpp"
+#include "../program/program.hpp"
 
 
 class Cpu : public Component, public Readable {
@@ -31,7 +31,7 @@ private:
 public:
   std::string programPath;
   Program p;
-  Cpu(Config c, bool verbose);
+  Cpu(Config & c, bool verbose);
   void simulate();
   DataValue read();
 };

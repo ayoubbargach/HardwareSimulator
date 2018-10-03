@@ -13,7 +13,30 @@
 
 #include <string>
 #include <vector>
-#include "format.hpp"
+#include "../io/format.hpp"
+
+/**
+    Enum of all operations
+*/
+enum op_t { NOP, ADD, SUB, MUL, DIV};
+
+/**
+    Decodes an instruction.
+
+    @param A input to decode.
+*/
+
+class Instruction {
+private:
+    op_t opcode;
+    std::vector<double> operands;
+    double (*op) (double, double); // A pointer on a function to call when needed to simulate the operation
+
+public:
+    std::string input;
+    Instruction(std::string input); // Here we generate all the private fields
+    double compute(); // Compute the operation
+};
 
 /**
     Decodes a program.
@@ -36,29 +59,6 @@ public:
     void reset(); // Put pointer to 0
     bool end(); // Return 1 if all the instructions have been executed
 };
-
-/**
-    Decodes an instruction.
-
-    @param A input to decode.
-*/
-
-class Instruction {
-private:
-    op_t opcode;
-    std::vector<double> operands;
-    double (*op) (double, double); // A pointer on a function to call when needed to simulate the operation
-
-public:
-    std::string input;
-    Instruction(std::string input); // Here we generate all the private fields
-    double compute(); // Compute the operation
-};
-
-/**
-    Enum of all operations
-*/
-enum op_t { NOP, ADD, SUB, MUL, DIV};
 
 /**
     Basic functions that implement this operations

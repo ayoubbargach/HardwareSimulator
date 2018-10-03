@@ -14,8 +14,8 @@
 #include <list>
 #include "component.hpp"
 #include "readable.hpp"
-#include "io/config.hpp"
-#include "platform/type.hpp"
+#include "../io/config.hpp"
+#include "../platform/type.hpp"
 
 
 class Display : public Component {
@@ -26,7 +26,7 @@ private:
 public:
   std::string sourceLabel;
   Readable* source;
-  Display(Config c);
+  Display(Config & c);
   void simulate();
 };
 

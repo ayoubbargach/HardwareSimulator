@@ -11,7 +11,7 @@
 
 // CTRO of Cpu from config
 
-Cpu::Cpu(Config c, bool verbose) 
+Cpu::Cpu(Config & c, bool verbose) 
     : Component(CPU), l(c.entries["LABEL"]), coreFlag(1), cores(std::stoi(c.entries["CORES"])), frequency(std::stoi(c.entries["FREQUENCY"])),
      programPath(c.entries["PROGRAM"]), p(c.entries["PROGRAM"], verbose), verbose(verbose) {
     
