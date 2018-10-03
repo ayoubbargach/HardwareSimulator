@@ -7,7 +7,7 @@
     @version 1.0
 */
 
-#include "Component.hpp"
+#include "component.hpp"
 
 Component::Component(component_t t)
     : type(t) {

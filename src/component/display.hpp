@@ -12,8 +12,8 @@
 
 #include <string>
 #include <list>
-#include "Component.hpp"
-#include "Readable.hpp"
+#include "component.hpp"
+#include "readable.hpp"
 #include "io/config.hpp"
 #include "platform/type.hpp"
 

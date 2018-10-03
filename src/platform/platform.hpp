@@ -13,8 +13,8 @@
 
 #include <map>
 
-#include "component/Component.hpp"
-#include "component/Readable.hpp"
+#include "component/component.hpp"
+#include "component/readable.hpp"
 #include "format.hpp"
 #include "config.hpp"
 

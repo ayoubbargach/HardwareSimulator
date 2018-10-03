@@ -13,8 +13,8 @@
 #include <string>
 #include <list>
 #include <iostream>
-#include "Component.hpp"
-#include "Readable.hpp"
+#include "component.hpp"
+#include "readable.hpp"
 #include "io/config.hpp"
 
 

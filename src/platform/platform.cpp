@@ -91,8 +91,9 @@ void Platform::simulate() {
     // We iterate over all components to simulate them all !
 
     std::cout << "--- START simulation ---" << std::endl;
+    int i;
 
-    for(i=0; i<steps, i++) {
+    for(i=0; i<steps, i++;) {
         std::cout << "Step " << i << " :" <<std::endl;
         for (auto & mapPair : components ) {
             std::cout << "/!\\ Simulation of component : " << mapPair.first << " /!\\ " << std::endl;
